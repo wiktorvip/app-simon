@@ -1,20 +1,21 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
+  labels:
+    app: app-simon
   name: app-simon
 spec:
-  selector:
-	matchLabels:
-	app: app-simon
   replicas: 2
+  selector:
+    matchLabels:
+      app: app-simon
+  strategy: {}
   template:
-	metadata:
-  	labels:
-	app: app-simon
-	spec:
-  	containers:
-  	- name: app-simon
-    	image: wiktorvip/app-simon:latest
-    	imagePullPolicy: Never
-    	ports:
-    	- containerPort: 6000
+    metadata:
+      labels:
+        app: app-simon
+    spec:
+      containers:
+      - image: wiktorvip/app-simon:latest
+        name: app-simon
+
